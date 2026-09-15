@@ -35,7 +35,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val redLinePoints = loadRedLine()
 
         setContent {
             val delhi = LatLng(28.6139, 77.2090)
@@ -44,15 +43,23 @@ class MainActivity : ComponentActivity() {
                 position = CameraPosition.fromLatLngZoom(delhi, 11f)
             }
 
+            val metroLines = listOf(
+                "0" to Color.Red,
+                "29" to Color.Magenta,
+                "31" to Color.Gray,
+                "33" to Color.Green
+            )
+
+
             GoogleMap(
                 modifier = Modifier.fillMaxSize(),
-                cameraPositionState = cameraPositionState,
-                uiSettings = MapUiSettings(
-                    zoomControlsEnabled = true
-                )
+                cameraPositionState = cameraPositionState
             ) {
+
+                val redLine = loadColorLine("0")
+
                 Polyline(
-                    points = redLinePoints,
+                    points = redLine,
                     color = Color.Red,
                     width = 8f
                 )
@@ -60,87 +67,41 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun loadRedLine(): List<LatLng> {
+    private fun loadColorLine(
+        routeId: String
+    ) : List<LatLng> {
 
-        // Read routes.txt
-        val routes = assets.open("routes.txt")
-        val routeReader = BufferedReader(InputStreamReader(routes))
-
-        var redRouteId: String? = null
-
-        routeReader.readLine() // Skip header
-
-        routeReader.forEachLine { line ->
-
-            val columns = line.split(",")
-
-            val routeId = columns[0]
-            val routeShortName = columns[2]
-
-            if (routeShortName == "R_RD") {
-                redRouteId = routeId
-            }
-        }
-
-        routeReader.close()
-
-        // Read trips.txt to find the shape used by the Red Line
+        // Find a trip belonging to this route
         val trips = assets.open("trips.txt")
-        val tripReader = BufferedReader(InputStreamReader(trips))
+            .bufferedReader()
+            .readLines()
 
-        var redShapeId: String? = null
+        val trip = trips
+            .drop(1)
+            .map { it.split(",") }
+            .firstOrNull { it[0] == routeId }
 
-        tripReader.readLine() // Skip header
+        if (trip == null) return emptyList()
 
-        tripReader.forEachLine { line ->
+        val shapeId = trip[7]   // shape_id
 
-            val columns = line.split(",")
-
-            val routeId = columns[0]
-            val shapeId = columns[7]
-
-            if (routeId == redRouteId) {
-                redShapeId = shapeId
-                return@forEachLine
-            }
-        }
-
-        tripReader.close()
-
-        // Read shapes.txt
+        // Get the shape points
         val shapes = assets.open("shapes.txt")
-        val shapeReader = BufferedReader(InputStreamReader(shapes))
+            .bufferedReader()
+            .readLines()
 
-        val points = mutableListOf<ShapePoint>()
-
-        shapeReader.readLine() // Skip header
-
-        shapeReader.forEachLine { line ->
-
-            val columns = line.split(",")
-
-            val shapeId = columns[0]
-
-            if (shapeId == redShapeId) {
-
-                val lat = columns[1].toDouble()
-                val lon = columns[2].toDouble()
-                val sequence = columns[3].toInt()
-
-                points.add(
-                    ShapePoint(
-                        lat = lat,
-                        lon = lon,
-                        sequence = sequence
-                    )
+        val points = shapes
+            .drop(1)
+            .map { it.split(",") }
+            .filter { it[0] == shapeId }
+            .sortedBy { it[3].toInt() }   // shape_pt_sequence
+            .map {
+                LatLng(
+                    it[1].toDouble(),     // latitude
+                    it[2].toDouble()      // longitude
                 )
             }
-        }
-
-        shapeReader.close()
 
         return points
-            .sortedBy { it.sequence }
-            .map { LatLng(it.lat, it.lon) }
     }
 }
