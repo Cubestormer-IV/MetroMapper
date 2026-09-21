@@ -1,0 +1,57 @@
+[
+  {
+    "id": "red",
+    "name": "Red Line",
+    "color": "#E53935"
+  },
+  {
+    "id": "yellow",
+    "name": "Yellow Line",
+    "color": "#FDD835"
+  },
+  {
+    "id": "blue",
+    "name": "Blue Line",
+    "color": "#1E88E5"
+  },
+  {
+    "id": "green",
+    "name": "Green Line",
+    "color": "#43A047"
+  },
+  {
+    "id": "violet",
+    "name": "Violet Line",
+    "color": "#8E24AA"
+  },
+  {
+    "id": "magenta",
+    "name": "Magenta Line",
+    "color": "#D81B60"
+  },
+  {
+    "id": "pink",
+    "name": "Pink Line",
+    "color": "#EC407A"
+  },
+  {
+    "id": "orange",
+    "name": "Orange Line",
+    "color": "#FB8C00"
+  },
+  {
+    "id": "aqua",
+    "name": "Aqua Line",
+    "color": "#00ACC1"
+  },
+  {
+    "id": "rapid",
+    "name": "Rapid Metro",
+    "color": "#00897B"
+  },
+  {
+    "id": "gray",
+    "name": "Gray Line",
+    "color": "#757575"
+  }
+]

@@ -3,26 +3,15 @@ package com.example.metromapper
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.metromapper.ui.theme.MetroMapperTheme
 import androidx.compose.ui.graphics.Color
 
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.MapProperties
-import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.Polyline
 import com.google.maps.android.compose.rememberCameraPositionState
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 
 data class ShapePoint(
@@ -31,6 +20,16 @@ data class ShapePoint(
     val sequence: Int
 )
 class MainActivity : ComponentActivity() {
+
+    val metroLines = listOf(
+        "0" to Color.Red,
+        "2" to Color.Yellow,
+        "5" to Color.Blue,
+        "7" to Color.Green,
+        "12" to Color.Magenta,
+//        "31" to Color.Gray,
+//        "33" to Color.Green
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,26 +42,22 @@ class MainActivity : ComponentActivity() {
                 position = CameraPosition.fromLatLngZoom(delhi, 11f)
             }
 
-            val metroLines = listOf(
-                "0" to Color.Red,
-                "29" to Color.Magenta,
-                "31" to Color.Gray,
-                "33" to Color.Green
-            )
-
 
             GoogleMap(
                 modifier = Modifier.fillMaxSize(),
                 cameraPositionState = cameraPositionState
             ) {
 
-                val redLine = loadColorLine("0")
+                metroLines.forEach { (routeId, color) ->
+                    val line = loadColorLine(routeId)
 
-                Polyline(
-                    points = redLine,
-                    color = Color.Red,
-                    width = 8f
-                )
+                    Polyline(
+                        points = line,
+                        color = color,
+                        width = 8f
+                    )
+                }
+
             }
         }
     }
@@ -72,7 +67,7 @@ class MainActivity : ComponentActivity() {
     ) : List<LatLng> {
 
         // Find a trip belonging to this route
-        val trips = assets.open("trips.txt")
+        val trips = assets.open("data/gtfs/trips.txt")
             .bufferedReader()
             .readLines()
 
@@ -86,7 +81,7 @@ class MainActivity : ComponentActivity() {
         val shapeId = trip[7]   // shape_id
 
         // Get the shape points
-        val shapes = assets.open("shapes.txt")
+        val shapes = assets.open("data/gtfs/shapes.txt")
             .bufferedReader()
             .readLines()
 
