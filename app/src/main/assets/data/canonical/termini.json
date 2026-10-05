@@ -1,0 +1,36 @@
+[
+  { "line": "red", "stationId": "rithala", "towards": "Rithala" },
+  { "line": "red", "stationId": "shaheed_sthal_(new_bus_adda)", "towards": "Shaheed Sthal" },
+
+  { "line": "yellow", "stationId": "huda_city_centre", "towards": "Huda City Centre" },
+  { "line": "yellow", "stationId": "samaypur_badli", "towards": "Samaypur Badli" },
+
+  { "line": "blue", "stationId": "dwarka_sector___21", "towards": "Dwarka Sector 21" },
+  { "line": "blue", "stationId": "noida_electronic_city", "towards": "Noida Electronic City" },
+  { "line": "blue", "stationId": "vaishali", "towards": "Vaishali" },
+
+  { "line": "green", "stationId": "brigadier_hoshiyar_singh", "towards": "Brigadier Hoshiyar Singh" },
+  { "line": "green", "stationId": "inderlok", "towards": "Inderlok" },
+  { "line": "green", "stationId": "kirti_nagar", "towards": "Kirti Nagar" },
+
+  { "line": "violet", "stationId": "raja_nahar_singh", "towards": "Raja Nahar Singh" },
+  { "line": "violet", "stationId": "kashmere_gate", "towards": "Kashmere Gate" },
+
+  { "line": "magenta", "stationId": "janak_puri_west", "towards": "Janakpuri West" },
+  { "line": "magenta", "stationId": "botanical_garden", "towards": "Botanical Garden" },
+
+  { "line": "pink", "stationId": "majlis_park", "towards": "Majlis Park" },
+  { "line": "pink", "stationId": "shiv_vihar", "towards": "Shiv Vihar" },
+
+  { "line": "orange", "stationId": "dwarka_sector___21", "towards": "Dwarka Sector 21" },
+  { "line": "orange", "stationId": "new_delhi", "towards": "New Delhi" },
+
+  { "line": "aqua", "stationId": "noida_sector_51", "towards": "Noida Sector 51" },
+  { "line": "aqua", "stationId": "depot_station", "towards": "Depot Station" },
+
+  { "line": "rapid", "stationId": "sector_55_56_(rapid_metro)", "towards": "Sector 55-56" },
+  { "line": "rapid", "stationId": "phase_3_(rapid_metro)", "towards": "Phase 3" },
+
+  { "line": "gray", "stationId": "dhansa_bus_stand", "towards": "Dhansa Bus Stand" },
+  { "line": "gray", "stationId": "dwarka", "towards": "Dwarka" }
+]

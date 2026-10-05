@@ -1,6 +1,5 @@
 package com.example.metromapper
 
-import kotlin.math.min
 import java.util.PriorityQueue
 
 data class Connection(
@@ -12,6 +11,7 @@ data class Connection(
 
 data class RouteResult(
     val stations: List<String>,
+    val hops: List<Connection>,
     val distanceM: Int
 )
 
@@ -23,13 +23,16 @@ private data class QueueNode(
 fun findShortestRoute(
     connections: List<Connection>,
     start: String,
-    destination: String
+    destination: String,
+    excluded: Set<Connection> = emptySet()
 ): RouteResult? {
 
     // Build the graph
     val graph = mutableMapOf<String, MutableList<Connection>>()
 
     for (connection in connections) {
+        if (connection in excluded) continue
+
         graph
             .getOrPut(connection.from) { mutableListOf() }
             .add(connection)
@@ -37,7 +40,9 @@ fun findShortestRoute(
 
     // Shortest known distance to each station
     val distances = mutableMapOf<String, Int>()
-    val previous = mutableMapOf<String, String>()
+
+    // The connection we used to reach each station
+    val previous = mutableMapOf<String, Connection>()
 
     val queue = PriorityQueue<QueueNode>(
         compareBy { it.distance }
@@ -70,7 +75,7 @@ fun findShortestRoute(
             if (newDistance < oldDistance) {
 
                 distances[connection.to] = newDistance
-                previous[connection.to] = current.station
+                previous[connection.to] = connection
 
                 queue.add(
                     QueueNode(
@@ -87,20 +92,52 @@ fun findShortestRoute(
         return null
     }
 
-    // Reconstruct the route
-    val route = mutableListOf<String>()
+    // Reconstruct the route, one connection at a time
+    val hops = mutableListOf<Connection>()
     var current = destination
 
     while (current != start) {
-        route.add(current)
-        current = previous[current] ?: return null
+        val hop = previous[current] ?: return null
+        hops.add(hop)
+        current = hop.from
     }
 
-    route.add(start)
-    route.reverse()
+    hops.reverse()
 
     return RouteResult(
-        stations = route,
+        stations = listOf(start) + hops.map { it.to },
+        hops = hops,
         distanceM = distances[destination]!!
     )
+}
+
+// Returns up to maxRoutes different routes, shortest first.
+// Alternatives come from blocking each connection of the best route in turn.
+fun findRoutes(
+    connections: List<Connection>,
+    start: String,
+    destination: String,
+    maxRoutes: Int = 3
+): List<RouteResult> {
+
+    val best = findShortestRoute(connections, start, destination) ?: return emptyList()
+
+    val routes = mutableListOf(best)
+
+    for (hop in best.hops) {
+        val alternative = findShortestRoute(
+            connections,
+            start,
+            destination,
+            excluded = setOf(hop)
+        ) ?: continue
+
+        if (routes.none { it.hops == alternative.hops }) {
+            routes.add(alternative)
+        }
+    }
+
+    return routes
+        .sortedBy { it.distanceM }
+        .take(maxRoutes)
 }

@@ -42,6 +42,9 @@ class MainActivity : ComponentActivity() {
                 position = CameraPosition.fromLatLngZoom(delhi, 11f)
             }
 
+            val stationCoords = loadStationCoordinates(this)
+            val route = findShortestRoute(loadConnections(this), "rithala", "kashmere_gate")
+            val routePoints = route?.stations?.mapNotNull { stationCoords[it] }.orEmpty()
 
             GoogleMap(
                 modifier = Modifier.fillMaxSize(),
@@ -55,6 +58,14 @@ class MainActivity : ComponentActivity() {
                         points = line,
                         color = color,
                         width = 8f
+                    )
+                }
+
+                if (routePoints.isNotEmpty()) {
+                    Polyline(
+                        points = routePoints,
+                        color = Color.Black,
+                        width = 16f
                     )
                 }
 
