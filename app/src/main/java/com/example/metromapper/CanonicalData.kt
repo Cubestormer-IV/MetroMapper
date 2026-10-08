@@ -62,3 +62,39 @@ fun loadTermini(context: Context): Map<String, String> {
         .fromJson(json, Array<TerminusJson>::class.java)
         .associate { "${it.line}:${it.stationId}" to it.towards }
 }
+
+// A station with everything the UI needs: not just its position, but its
+// display name too (stationIds are slugs like "kashmere_gate").
+data class Station(
+    val id: String,
+    val name: String,
+    val position: LatLng,
+    val lines: List<String>
+)
+
+fun loadStations(context: Context): List<Station> {
+    val json = context.assets
+        .open("data/canonical/stations.json")
+        .bufferedReader()
+        .use { it.readText() }
+
+    return Gson()
+        .fromJson(json, Array<StationJson>::class.java)
+        .map { Station(it.id, it.name, LatLng(it.latitude, it.longitude), it.lines) }
+}
+
+// Matches the fields in lines.json
+data class MetroLine(
+    val id: String,
+    val name: String,
+    val color: String // a hex color, e.g. "#E53935"
+)
+
+fun loadLines(context: Context): List<MetroLine> {
+    val json = context.assets
+        .open("data/canonical/lines.json")
+        .bufferedReader()
+        .use { it.readText() }
+
+    return Gson().fromJson(json, Array<MetroLine>::class.java).toList()
+}

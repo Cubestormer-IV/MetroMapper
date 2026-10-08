@@ -24,12 +24,33 @@ data class Leg(
         ).toInt()
 }
 
+
+// All stations you can reach from `from`, staying on the given line,
+// without turning back along the way you came in.
+private fun reachableOnLine(
+    from: String,
+    line: String,
+    connections: List<Connection>,
+    visited: MutableSet<String> = mutableSetOf()
+): Set<String> {
+    if (!visited.add(from)) return visited
+
+    for (connection in connections) {
+        if (connection.line == line && connection.from == from && connection.to !in visited) {
+            reachableOnLine(connection.to, line, connections, visited)
+        }
+    }
+
+    return visited
+}
+
 // Works out where the train is heading: walk along the line from the station
 // you get off at, away from where you boarded, until the line ends.
-// At a branch this takes the first option. That's a known gap, to fix later.
+// At a branch, take the fork that actually leads towards where you're going.
 // Returns the terminus name, or null if the line ends somewhere we have no terminus for.
 fun directionOf(
     leg: Leg,
+    destination: String,
     connections: List<Connection>,
     termini: Map<String, String>
 ): String? {
@@ -37,9 +58,18 @@ fun directionOf(
     var current = leg.alightAt
 
     while (true) {
-        val next = connections.firstOrNull {
+        val options = connections.filter {
             it.from == current && it.line == leg.line && it.to != previous
-        } ?: break
+        }
+
+        if (options.isEmpty()) break
+
+        val next = if (options.size == 1) {
+            options.first()
+        } else {
+            options.firstOrNull { destination in reachableOnLine(it.to, leg.line, connections) }
+                ?: options.first()
+        }
 
         previous = current
         current = next.to

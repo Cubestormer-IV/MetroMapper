@@ -20,7 +20,7 @@ class RouteDirectionTest {
         // Ride A -> B: the train carries on past B to C
         val leg = Leg("red", listOf("A", "B"), 100)
 
-        assertEquals("Station C", directionOf(leg, connections, termini))
+        assertEquals("Station C", directionOf(leg, "C", connections, termini))
     }
 
     @Test
@@ -29,7 +29,7 @@ class RouteDirectionTest {
         // Ride A -> C: you get off at the end of the line
         val leg = Leg("red", listOf("A", "B", "C"), 200)
 
-        assertEquals("Station C", directionOf(leg, connections, termini))
+        assertEquals("Station C", directionOf(leg, "C", connections, termini))
     }
 
     @Test
@@ -37,6 +37,36 @@ class RouteDirectionTest {
 
         val leg = Leg("red", listOf("A", "B"), 100)
 
-        assertNull(directionOf(leg, connections, emptyMap()))
+        assertNull(directionOf(leg, "C", connections, emptyMap()))
     }
+
+    @Test
+    fun choosesBranchThatLeadsToDestination() {
+
+        // M -> J, then J splits into two branches: J -> X and J -> Y
+        val branchingConnections = listOf(
+            Connection("M", "J", "red", 100),
+            Connection("J", "X", "red", 100),
+            Connection("J", "Y", "red", 100)
+        )
+
+        val branchingTermini = mapOf(
+            "red:X" to "Station X",
+            "red:Y" to "Station Y"
+        )
+
+        // This leg ends at J. Beyond J, the line splits into two directions.
+        val leg = Leg("red", listOf("M", "J"), 100)
+
+        assertEquals(
+            "Station X",
+            directionOf(leg, "X", branchingConnections, branchingTermini)
+        )
+
+        assertEquals(
+            "Station Y",
+            directionOf(leg, "Y", branchingConnections, branchingTermini)
+        )
+    }
+
 }
