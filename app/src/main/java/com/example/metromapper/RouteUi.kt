@@ -55,14 +55,15 @@ private fun colorFromHex(hex: String): Color =
 @Composable
 fun StationPickerScreen(
     stations: List<Station>,
+    modifier: Modifier = Modifier,
     onSearch: (fromId: String, toId: String) -> Unit
 ) {
     var fromId by remember { mutableStateOf<String?>(null) }
     var toId by remember { mutableStateOf<String?>(null) }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
+            .fillMaxWidth()
             .padding(16.dp)
     ) {
         Text("MetroMapper", style = MaterialTheme.typography.headlineSmall)
