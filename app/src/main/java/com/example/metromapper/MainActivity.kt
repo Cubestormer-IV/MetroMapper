@@ -27,13 +27,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.material3.Scaffold
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.LaunchedEffect
-
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Polyline
 
 // The old GTFS route IDs we draw as background lines on the map,
 // with a color each. This predates the canonical data and can be
@@ -66,79 +63,85 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             var screen by remember { mutableStateOf<Screen>(Screen.Picker) }
+
+            val delhi = LatLng(28.6139, 77.2090)
+            val cameraPositionState = rememberCameraPositionState {
+                position = CameraPosition.fromLatLngZoom(delhi, 11f)
+            }
+
+            val cardHeight = 640.dp
+            val restingVisibleHeight = 180.dp
+            val maxOffset = cardHeight - restingVisibleHeight
+            val density = LocalDensity.current
+
+            var offsetY by remember {mutableStateOf(maxOffset)}
+
+            LaunchedEffect(offsetY) {
+                cameraPositionState.position = CameraPosition.fromLatLngZoom(delhi, 11f)
+            }
+
+            LaunchedEffect(screen) {
+                offsetY = when (screen) {
+                    is Screen.Picker -> maxOffset
+                    else -> 0.dp
+                }
+            }
+
             Scaffold { innerPadding ->
-                Box(modifier = Modifier.padding(innerPadding)) {
-                    when (val current = screen) {
-                        is Screen.Picker -> {
-                            val delhi = LatLng(28.6139, 77.2090)
-                            val cameraPositionState = rememberCameraPositionState {
-                                position = CameraPosition.fromLatLngZoom(delhi, 11f)
-                            }
-
-                            val cardHeight = 640.dp
-                            val restingVisibleHeight = 180.dp
-                            val maxOffset = cardHeight - restingVisibleHeight
-                            val density = LocalDensity.current
-
-                            var offsetY by remember {mutableStateOf(maxOffset)}
-
-                            LaunchedEffect(offsetY) {
-                                cameraPositionState.position = CameraPosition.fromLatLngZoom(delhi, 11f)
-                            }
-
-                            Box(modifier = Modifier.fillMaxSize()) {
-                                GoogleMap(
-                                    modifier = Modifier.fillMaxSize(),
-                                    cameraPositionState = cameraPositionState,
-                                    contentPadding = PaddingValues(bottom = cardHeight - offsetY)
-                                ) {
-                                    backgroundLines.forEach { (points, color) ->
-                                        Polyline(points = points, color = color, width = 8f)
-                                    }
-                                }
-
-                                Surface(
-                                    tonalElevation = 4.dp,
-                                    shadowElevation = 8.dp,
-                                    modifier = Modifier
-                                        .align(Alignment.BottomCenter)
-                                        .fillMaxWidth()
-                                        .height(cardHeight)
-                                        .offset(y = offsetY)
-                                        .pointerInput(Unit) {
-                                            detectVerticalDragGestures { change, dragAmount ->
-                                                change.consume()
-                                                offsetY = (offsetY + with(density) { dragAmount.toDp() })
-                                                    .coerceIn(0.dp, maxOffset)
-                                            }
-                                        }
-                                ) {
-                                    StationPickerScreen(
-                                        stations = stations, onSearch = { fromId, toId ->
-                                            screen = Screen.Options(findRoutes(connections, fromId, toId))
-                                        }
-                                    )
-                                }
-                            }
+                Box(modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize()
+                ) {
+                    GoogleMap(
+                        modifier = Modifier.fillMaxSize(),
+                        cameraPositionState = cameraPositionState,
+                        contentPadding = PaddingValues(bottom = cardHeight - offsetY)
+                    ) {
+                        backgroundLines.forEach { (points, color) ->
+                            Polyline(points = points, color = color, width = 8f)
                         }
+                    }
+                    Surface(
+                        tonalElevation = 4.dp,
+                        shadowElevation = 8.dp,
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .fillMaxWidth()
+                            .height(cardHeight)
+                            .offset(y = offsetY)
+                            .pointerInput(Unit) {
+                                detectVerticalDragGestures { change, dragAmount ->
+                                    change.consume()
+                                    offsetY = (offsetY + with(density) { dragAmount.toDp() })
+                                        .coerceIn(0.dp, maxOffset)
+                                }
+                            }
+                    ) {
+                        when (val current = screen) {
+                            is Screen.Picker -> StationPickerScreen(
+                                stations = stations,
+                                onSearch = { fromId, toId ->
+                                    screen = Screen.Options(findRoutes(connections, fromId, toId))
+                                }
+                            )
 
-                        is Screen.Options -> RouteOptionsScreen(
-                            routes = current.routes,
-                            stationsById = stationsById,
-                            linesById = linesById,
-                            onSelect = { route -> screen = Screen.Detail(route, current) },
-                            onBack = { screen = Screen.Picker }
-                        )
+                            is Screen.Options -> RouteOptionsScreen(
+                                routes = current.routes,
+                                stationsById = stationsById,
+                                linesById = linesById,
+                                onSelect = { route -> screen = Screen.Detail(route, current) },
+                                onBack = { screen = Screen.Picker }
+                            )
 
-                        is Screen.Detail -> RouteDetailScreen(
-                            route = current.route,
-                            connections = connections,
-                            termini = termini,
-                            stationsById = stationsById,
-                            linesById = linesById,
-                            backgroundLines = backgroundLines,
-                            onBack = { screen = current.options }
-                        )
+                            is Screen.Detail -> RouteDetailScreen(
+                                route = current.route,
+                                connections = connections,
+                                termini = termini,
+                                stationsById = stationsById,
+                                linesById = linesById,
+                                onBack = { screen = current.options }
+                            )
+                        }
                     }
                 }
             }

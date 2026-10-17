@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.overscroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -21,7 +22,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,13 +32,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.Polyline
-import com.google.maps.android.compose.rememberCameraPositionState
 
 // Which screen is on display. Just three screens, so no navigation library.
 sealed class Screen {
@@ -223,47 +216,12 @@ fun RouteDetailScreen(
     termini: Map<String, String>,
     stationsById: Map<String, Station>,
     linesById: Map<String, MetroLine>,
-    backgroundLines: List<Pair<List<LatLng>, Color>>,
     onBack: () -> Unit
 ) {
-    val routePoints = route.stations.mapNotNull { stationsById[it]?.position }
 
-    val delhi = LatLng(28.6139, 77.2090)
-    val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(delhi, 11f)
-    }
-
-    // Once we know the route's points, move the camera to frame them
-    LaunchedEffect(routePoints) {
-        if (routePoints.size >= 2) {
-            val bounds = LatLngBounds.builder().apply {
-                routePoints.forEach { include(it) }
-            }.build()
-            cameraPositionState.animate(CameraUpdateFactory.newLatLngBounds(bounds, 100))
-        }
-    }
+    val steps = buildSteps(route, connections, termini, stationsById, linesById)
 
     Column(modifier = Modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp)
-        ) {
-            GoogleMap(
-                modifier = Modifier.fillMaxSize(),
-                cameraPositionState = cameraPositionState
-            ) {
-                backgroundLines.forEach { (points, color) ->
-                    Polyline(points = points, color = color, width = 8f)
-                }
-                if (routePoints.isNotEmpty()) {
-                    Polyline(points = routePoints, color = Color.Black, width = 16f)
-                }
-            }
-        }
-
-        val steps = buildSteps(route, connections, termini, stationsById, linesById)
-
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
