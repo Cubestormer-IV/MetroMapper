@@ -36,7 +36,7 @@ class RouteSliceTest {
                 "rohini_east",
                 "pitampura",
                 "kohat_enclave",
-                "netaji_subhash_place",
+                "netaji_subash_place",
                 "keshav_puram",
                 "kanhaiya_nagar",
                 "inderlok",
@@ -53,7 +53,7 @@ class RouteSliceTest {
             route.stations
         )
 
-        assertEquals(18486, route.distanceM)
+        assertEquals(19019, route.distanceM)
 
         val legs = splitIntoLegs(route)
 

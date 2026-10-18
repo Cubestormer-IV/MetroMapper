@@ -43,7 +43,7 @@ class RouteFinderTest {
                 "rohini_east",
                 "pitampura",
                 "kohat_enclave",
-                "netaji_subhash_place",
+                "netaji_subash_place",
                 "keshav_puram",
                 "kanhaiya_nagar",
                 "inderlok",
@@ -56,6 +56,6 @@ class RouteFinderTest {
             result?.stations
         )
 
-        assertEquals(14413, result?.distanceM)
+        assertEquals(14896, result?.distanceM)
     }
 }

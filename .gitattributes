@@ -1,0 +1,3 @@
+app/src/main/assets/data/gtfs/bus/stop_times.txt filter=lfs diff=lfs merge=lfs -text
+app/src/main/assets/data/gtfs/bus/fare_attributes.txt filter=lfs diff=lfs merge=lfs -text
+app/src/main/assets/data/gtfs/bus/fare_rules.txt filter=lfs diff=lfs merge=lfs -text

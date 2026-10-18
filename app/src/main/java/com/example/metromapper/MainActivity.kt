@@ -31,6 +31,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.LaunchedEffect
 import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.rememberMarkerState
+import com.google.android.gms.maps.model.Dot
+import com.google.android.gms.maps.model.Gap
 
 // The old GTFS route IDs we draw as background lines on the map,
 // with a color each. This predates the canonical data and can be
@@ -99,6 +103,34 @@ class MainActivity : ComponentActivity() {
                     ) {
                         backgroundLines.forEach { (points, color) ->
                             Polyline(points = points, color = color, width = 8f)
+                        }
+
+                        when (val current = screen) {
+                            is Screen.Options -> {
+                                val fromPos = current.routes.firstOrNull()?.stations?.firstOrNull()
+                                    ?.let {stationsById[it]?.position }
+                                val toPos = current.routes.firstOrNull()?.stations?.firstOrNull()
+                                    ?.let {stationsById[it]?.position }
+                                if (fromPos != null) Marker(state = rememberMarkerState(position = fromPos))
+                                if (toPos != null) Marker(state = rememberMarkerState(position = toPos))
+
+                                if (fromPos != null && toPos != null) {
+                                    Polyline(
+                                        points = listOf(fromPos, toPos),
+                                        color = Color.Black,
+                                        pattern = listOf(Dot(), Gap(10f))
+                                    )
+                                }
+                            }
+
+                            is Screen.Detail -> {
+                                val routePoints = current.route.stations.mapNotNull { stationsById[it]?.position }
+                                if (routePoints.isNotEmpty()) {
+                                    Polyline(points = routePoints, color = Color.Black, width = 16f)
+                                }
+                            }
+
+                            else -> {}
                         }
                     }
                     Surface(

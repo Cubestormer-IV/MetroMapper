@@ -41,6 +41,8 @@ Canonical files:
 
 The canonical data is maintained by hand where the source data is wrong or out of date.
 
+A richer schema (platforms vs. stations, bus support, walk/transfer edges) is designed but not yet built — see [`docs/data-model.md`](docs/data-model.md) for the decisions and open questions.
+
 ## Project layout
 
 ```
