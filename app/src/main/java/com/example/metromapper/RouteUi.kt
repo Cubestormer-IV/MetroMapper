@@ -164,7 +164,7 @@ fun RouteOptionsScreen(
             items(routes) { route ->
                 val legs = splitIntoLegs(route)
                 val totalMinutes = legs.sumOf { it.estimatedMinutes }
-                val transfers = legs.size - 1
+                val transfers = legs.count { !it.isWalk } - 1
 
                 Card(
                     modifier = Modifier
@@ -293,6 +293,14 @@ private fun StepRow(step: RouteStep) {
                 "Get off at ${step.stationName}",
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(vertical = 10.dp)
+            )
+        }
+
+        is RouteStep.Walk -> {
+            Text(
+                "Walk to ${step.toStationName} · ${step.minutes} min",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(start = 22.dp, top = 6.dp, bottom = 6.dp)
             )
         }
     }

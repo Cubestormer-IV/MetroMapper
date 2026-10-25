@@ -13,16 +13,30 @@ class RouteFinderTest {
         val from: String,
         val to: String,
         val line: String,
-        @SerializedName("distance_m") val distanceM: Int
+        @SerializedName("distance_m") val distanceM: Int,
+        @SerializedName("duration_s") val durationS: Int
+    )
+
+    private data class TransferJson(
+        val from: String,
+        val to: String,
+        @SerializedName("duration_s") val durationS: Int
     )
 
     private fun loadConnections(): List<Connection> {
         // Gradle runs unit tests with the app/ module as the working directory
         val json = File("src/main/assets/data/canonical/connections.json").readText()
+        val transferJson = File("src/main/assets/data/canonical/transfers.json").readText()
 
-        return Gson()
+        val rides = Gson()
             .fromJson(json, Array<ConnectionJson>::class.java)
-            .map { Connection(it.from, it.to, it.line, it.distanceM) }
+            .map { Connection(it.from, it.to, it.line, it.distanceM, it.durationS) }
+
+        val walks = Gson()
+            .fromJson(transferJson, Array<TransferJson>::class.java)
+            .map { Connection(it.from, it.to, "walk", 0, it.durationS) }
+
+        return rides + walks
     }
 
     @Test
@@ -43,7 +57,7 @@ class RouteFinderTest {
                 "rohini_east",
                 "pitampura",
                 "kohat_enclave",
-                "netaji_subash_place",
+                "netaji_subhash_place",
                 "keshav_puram",
                 "kanhaiya_nagar",
                 "inderlok",

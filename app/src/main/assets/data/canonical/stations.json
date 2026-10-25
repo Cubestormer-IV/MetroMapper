@@ -146,10 +146,19 @@
     ]
   },
   {
+    "id": "bhajanpura",
+    "name": "Bhajanpura",
+    "latitude": 28.703598,
+    "longitude": 77.262645,
+    "lines": [
+      "pink"
+    ]
+  },
+  {
     "id": "bhikaji_cama_place",
     "name": "Bhikaji Cama Place",
-    "latitude": 28.570208,
-    "longitude": 77.187866,
+    "latitude": 28.570198,
+    "longitude": 77.1879,
     "lines": [
       "pink"
     ]
@@ -171,6 +180,15 @@
     "longitude": 76.919128,
     "lines": [
       "green"
+    ]
+  },
+  {
+    "id": "burari",
+    "name": "Burari",
+    "latitude": 28.729829,
+    "longitude": 77.199574,
+    "lines": [
+      "pink"
     ]
   },
   {
@@ -684,6 +702,15 @@
     ]
   },
   {
+    "id": "jagatpur_village",
+    "name": "Jagatpur Village",
+    "latitude": 28.72115,
+    "longitude": 77.223935,
+    "lines": [
+      "pink"
+    ]
+  },
+  {
     "id": "jahangirpuri",
     "name": "Jahangirpuri",
     "latitude": 28.72818,
@@ -781,6 +808,15 @@
     "longitude": 77.199791,
     "lines": [
       "blue"
+    ]
+  },
+  {
+    "id": "jharoda_majra",
+    "name": "Jharoda Majra",
+    "latitude": 28.724883,
+    "longitude": 77.213678,
+    "lines": [
+      "pink"
     ]
   },
   {
@@ -902,6 +938,15 @@
     "longitude": 77.161774,
     "lines": [
       "red"
+    ]
+  },
+  {
+    "id": "khajuri_khas",
+    "name": "Khajuri Khas",
+    "latitude": 28.705184,
+    "longitude": 77.254473,
+    "lines": [
+      "pink"
     ]
   },
   {
@@ -1287,8 +1332,8 @@
     ]
   },
   {
-    "id": "netaji_subash_place",
-    "name": "Netaji Subash Place",
+    "id": "netaji_subhash_place",
+    "name": "Netaji Subhash Place",
     "latitude": 28.695637,
     "longitude": 77.152428,
     "lines": [
@@ -1950,8 +1995,8 @@
   {
     "id": "sarojini_nagar",
     "name": "Sarojini Nagar",
-    "latitude": 28.570208,
-    "longitude": 77.187866,
+    "latitude": 28.5758483,
+    "longitude": 77.1985691,
     "lines": [
       "pink"
     ]
@@ -2165,6 +2210,24 @@
     ]
   },
   {
+    "id": "sonia_vihar",
+    "name": "Sonia Vihar",
+    "latitude": 28.710225,
+    "longitude": 77.227471,
+    "lines": [
+      "pink"
+    ]
+  },
+  {
+    "id": "soorghat",
+    "name": "Soorghat",
+    "latitude": 28.708695,
+    "longitude": 77.242503,
+    "lines": [
+      "pink"
+    ]
+  },
+  {
     "id": "south_extension",
     "name": "South Extension",
     "latitude": 28.5686,
@@ -2174,8 +2237,8 @@
     ]
   },
   {
-    "id": "subash_nagar",
-    "name": "Subash Nagar",
+    "id": "subhash_nagar",
+    "name": "Subhash Nagar",
     "latitude": 28.640381,
     "longitude": 77.10273,
     "lines": [
@@ -2379,6 +2442,15 @@
     "longitude": 77.267937,
     "lines": [
       "blue"
+    ]
+  },
+  {
+    "id": "yamuna_vihar",
+    "name": "Yamuna Vihar",
+    "latitude": 28.702379,
+    "longitude": 77.277306,
+    "lines": [
+      "pink"
     ]
   }
 ]

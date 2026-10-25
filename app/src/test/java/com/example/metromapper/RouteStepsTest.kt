@@ -11,9 +11,9 @@ class RouteStepsTest {
 
         // A -> B -> C on red, then C -> D on yellow
         val connections = listOf(
-            Connection("A", "B", "red", 100),
-            Connection("B", "C", "red", 100),
-            Connection("C", "D", "yellow", 100)
+            Connection("A", "B", "red", 100, 30),
+            Connection("B", "C", "red", 100, 30),
+            Connection("C", "D", "yellow", 100, 20)
         )
 
         val stationsById = listOf(

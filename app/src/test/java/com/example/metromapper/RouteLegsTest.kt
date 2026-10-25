@@ -10,10 +10,10 @@ class RouteLegsTest {
 
         // A -red- B -red- C -yellow- D -yellow- E
         val connections = listOf(
-            Connection("A", "B", "red", 100),
-            Connection("B", "C", "red", 100),
-            Connection("C", "D", "yellow", 100),
-            Connection("D", "E", "yellow", 100)
+            Connection("A", "B", "red", 100, 100),
+            Connection("B", "C", "red", 100, 100),
+            Connection("C", "D", "yellow", 100, 100),
+            Connection("D", "E", "yellow", 100, 100)
         )
 
         val route = findShortestRoute(connections, "A", "E")!!
@@ -33,18 +33,18 @@ class RouteLegsTest {
     }
 
     @Test
-    fun estimatesMinutesFromDistanceAndStops() {
+    fun estimatesMinutesFromRealDuration() {
 
-        // A -> B -> C on one line: 5830 m total, one stop in the middle
+        // A -> B -> C on one line: 660 s of real scheduled travel time
         val connections = listOf(
-            Connection("A", "B", "red", 2915),
-            Connection("B", "C", "red", 2915)
+            Connection("A", "B", "red", 1000, 300),
+            Connection("B", "C", "red", 1000, 360)
         )
 
         val route = findShortestRoute(connections, "A", "C")!!
         val leg = splitIntoLegs(route).single()
 
-        // 5830 / 583 = 10 minutes travel, plus 1 minute for the stop
+        // (300 + 360) / 60 = 11 minutes
         assertEquals(11, leg.estimatedMinutes)
     }
 }

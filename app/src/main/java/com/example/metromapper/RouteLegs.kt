@@ -1,27 +1,22 @@
 package com.example.metromapper
 
-// Rough assumptions until we have real timetable data
-private const val METRES_PER_MINUTE = 583.0   // about 35 km/h
-private const val MINUTES_PER_STOP = 1.0
-
-// One continuous ride on a single line.
-// stations[0] is where you board, the last station is where you get off.
+// One continuous ride on a single line, or a walk between two platforms
+// (line == "walk"). stations[0] is where you board/start, the last station
+// is where you get off/arrive.
 data class Leg(
     val line: String,
     val stations: List<String>,
-    val distanceM: Int
+    val distanceM: Int,
+    val durationS: Int
 ) {
     val boardAt: String get() = stations.first()
     val alightAt: String get() = stations.last()
+    val isWalk: Boolean get() = line == "walk"
 
     // Stations you pass through without getting on or off
     val intermediateStops: Int get() = stations.size - 2
 
-    // Estimated ride time: travel time plus a little for each stop
-    val estimatedMinutes: Int
-        get() = Math.round(
-            distanceM / METRES_PER_MINUTE + intermediateStops * MINUTES_PER_STOP
-        ).toInt()
+    val estimatedMinutes: Int get() = Math.round(durationS / 60.0).toInt()
 }
 
 
@@ -47,13 +42,16 @@ private fun reachableOnLine(
 // Works out where the train is heading: walk along the line from the station
 // you get off at, away from where you boarded, until the line ends.
 // At a branch, take the fork that actually leads towards where you're going.
-// Returns the terminus name, or null if the line ends somewhere we have no terminus for.
+// Returns the terminus name, or null if the line ends somewhere we have no
+// terminus for — or if this leg is a walk, which has no direction to name.
 fun directionOf(
     leg: Leg,
     destination: String,
     connections: List<Connection>,
     termini: Map<String, String>
 ): String? {
+    if (leg.isWalk) return null
+
     var previous = leg.boardAt
     var current = leg.alightAt
 
@@ -78,7 +76,8 @@ fun directionOf(
     return termini["${leg.line}:$current"]
 }
 
-// Groups the hops of a route into legs. A new leg starts whenever the line changes.
+// Groups the hops of a route into legs. A new leg starts whenever the line
+// changes — which includes switching into or out of a walk.
 fun splitIntoLegs(route: RouteResult): List<Leg> {
     val legs = mutableListOf<Leg>()
 
@@ -88,10 +87,11 @@ fun splitIntoLegs(route: RouteResult): List<Leg> {
         if (last != null && last.line == hop.line) {
             legs[legs.lastIndex] = last.copy(
                 stations = last.stations + hop.to,
-                distanceM = last.distanceM + hop.distanceM
+                distanceM = last.distanceM + hop.distanceM,
+                durationS = last.durationS + hop.durationS
             )
         } else {
-            legs.add(Leg(hop.line, listOf(hop.from, hop.to), hop.distanceM))
+            legs.add(Leg(hop.line, listOf(hop.from, hop.to), hop.distanceM, hop.durationS))
         }
     }
 

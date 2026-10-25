@@ -1,0 +1,282 @@
+[
+  {
+    "from": "anand_vihar:blue",
+    "to": "anand_vihar:pink",
+    "duration_s": 318
+  },
+  {
+    "from": "anand_vihar:pink",
+    "to": "anand_vihar:blue",
+    "duration_s": 318
+  },
+  {
+    "from": "ashok_park_main:A",
+    "to": "ashok_park_main:B",
+    "duration_s": 227
+  },
+  {
+    "from": "ashok_park_main:B",
+    "to": "ashok_park_main:A",
+    "duration_s": 227
+  },
+  {
+    "from": "azadpur:pink",
+    "to": "azadpur:yellow",
+    "duration_s": 324
+  },
+  {
+    "from": "azadpur:yellow",
+    "to": "azadpur:pink",
+    "duration_s": 324
+  },
+  {
+    "from": "botanical_garden:blue",
+    "to": "botanical_garden:magenta",
+    "duration_s": 247
+  },
+  {
+    "from": "botanical_garden:magenta",
+    "to": "botanical_garden:blue",
+    "duration_s": 247
+  },
+  {
+    "from": "central_secretariat:violet",
+    "to": "central_secretariat:yellow",
+    "duration_s": 325
+  },
+  {
+    "from": "central_secretariat:yellow",
+    "to": "central_secretariat:violet",
+    "duration_s": 325
+  },
+  {
+    "from": "dilli_haat___ina:pink",
+    "to": "dilli_haat___ina:yellow",
+    "duration_s": 367
+  },
+  {
+    "from": "dilli_haat___ina:yellow",
+    "to": "dilli_haat___ina:pink",
+    "duration_s": 367
+  },
+  {
+    "from": "dwarka:blue",
+    "to": "dwarka:gray",
+    "duration_s": 200
+  },
+  {
+    "from": "dwarka:gray",
+    "to": "dwarka:blue",
+    "duration_s": 200
+  },
+  {
+    "from": "dwarka_sector___21:blue",
+    "to": "dwarka_sector___21:orange",
+    "duration_s": 311
+  },
+  {
+    "from": "dwarka_sector___21:orange",
+    "to": "dwarka_sector___21:blue",
+    "duration_s": 311
+  },
+  {
+    "from": "hauz_khas:magenta",
+    "to": "hauz_khas:yellow",
+    "duration_s": 287
+  },
+  {
+    "from": "hauz_khas:yellow",
+    "to": "hauz_khas:magenta",
+    "duration_s": 287
+  },
+  {
+    "from": "inderlok:green",
+    "to": "inderlok:red",
+    "duration_s": 331
+  },
+  {
+    "from": "inderlok:red",
+    "to": "inderlok:green",
+    "duration_s": 331
+  },
+  {
+    "from": "janak_puri_west:blue",
+    "to": "janak_puri_west:magenta",
+    "duration_s": 351
+  },
+  {
+    "from": "janak_puri_west:magenta",
+    "to": "janak_puri_west:blue",
+    "duration_s": 351
+  },
+  {
+    "from": "kalkaji_mandir:magenta",
+    "to": "kalkaji_mandir:violet",
+    "duration_s": 331
+  },
+  {
+    "from": "kalkaji_mandir:violet",
+    "to": "kalkaji_mandir:magenta",
+    "duration_s": 331
+  },
+  {
+    "from": "karkarduma:blue",
+    "to": "karkarduma:pink",
+    "duration_s": 272
+  },
+  {
+    "from": "karkarduma:pink",
+    "to": "karkarduma:blue",
+    "duration_s": 272
+  },
+  {
+    "from": "kashmere_gate:red",
+    "to": "kashmere_gate:violet",
+    "duration_s": 286
+  },
+  {
+    "from": "kashmere_gate:red",
+    "to": "kashmere_gate:yellow",
+    "duration_s": 286
+  },
+  {
+    "from": "kashmere_gate:violet",
+    "to": "kashmere_gate:red",
+    "duration_s": 286
+  },
+  {
+    "from": "kashmere_gate:violet",
+    "to": "kashmere_gate:yellow",
+    "duration_s": 286
+  },
+  {
+    "from": "kashmere_gate:yellow",
+    "to": "kashmere_gate:red",
+    "duration_s": 286
+  },
+  {
+    "from": "kashmere_gate:yellow",
+    "to": "kashmere_gate:violet",
+    "duration_s": 286
+  },
+  {
+    "from": "kirti_nagar:blue",
+    "to": "kirti_nagar:green",
+    "duration_s": 330
+  },
+  {
+    "from": "kirti_nagar:green",
+    "to": "kirti_nagar:blue",
+    "duration_s": 330
+  },
+  {
+    "from": "lajpat_nagar:pink",
+    "to": "lajpat_nagar:violet",
+    "duration_s": 297
+  },
+  {
+    "from": "lajpat_nagar:violet",
+    "to": "lajpat_nagar:pink",
+    "duration_s": 297
+  },
+  {
+    "from": "mandi_house:blue",
+    "to": "mandi_house:violet",
+    "duration_s": 199
+  },
+  {
+    "from": "mandi_house:violet",
+    "to": "mandi_house:blue",
+    "duration_s": 199
+  },
+  {
+    "from": "maujpur___babarpur:A",
+    "to": "maujpur___babarpur:B",
+    "duration_s": 360
+  },
+  {
+    "from": "maujpur___babarpur:B",
+    "to": "maujpur___babarpur:A",
+    "duration_s": 360
+  },
+  {
+    "from": "mayur_vihar_i:blue",
+    "to": "mayur_vihar_i:pink",
+    "duration_s": 195
+  },
+  {
+    "from": "mayur_vihar_i:pink",
+    "to": "mayur_vihar_i:blue",
+    "duration_s": 195
+  },
+  {
+    "from": "netaji_subhash_place:pink",
+    "to": "netaji_subhash_place:red",
+    "duration_s": 285
+  },
+  {
+    "from": "netaji_subhash_place:red",
+    "to": "netaji_subhash_place:pink",
+    "duration_s": 285
+  },
+  {
+    "from": "new_delhi:orange",
+    "to": "new_delhi:yellow",
+    "duration_s": 315
+  },
+  {
+    "from": "new_delhi:yellow",
+    "to": "new_delhi:orange",
+    "duration_s": 315
+  },
+  {
+    "from": "rajiv_chowk:blue",
+    "to": "rajiv_chowk:yellow",
+    "duration_s": 362
+  },
+  {
+    "from": "rajiv_chowk:yellow",
+    "to": "rajiv_chowk:blue",
+    "duration_s": 362
+  },
+  {
+    "from": "rajouri_garden:blue",
+    "to": "rajouri_garden:pink",
+    "duration_s": 330
+  },
+  {
+    "from": "rajouri_garden:pink",
+    "to": "rajouri_garden:blue",
+    "duration_s": 330
+  },
+  {
+    "from": "sikanderpur:rapid",
+    "to": "sikanderpur:yellow",
+    "duration_s": 244
+  },
+  {
+    "from": "sikanderpur:yellow",
+    "to": "sikanderpur:rapid",
+    "duration_s": 244
+  },
+  {
+    "from": "welcome:pink",
+    "to": "welcome:red",
+    "duration_s": 281
+  },
+  {
+    "from": "welcome:red",
+    "to": "welcome:pink",
+    "duration_s": 281
+  },
+  {
+    "from": "yamuna_bank:A",
+    "to": "yamuna_bank:B",
+    "duration_s": 323
+  },
+  {
+    "from": "yamuna_bank:B",
+    "to": "yamuna_bank:A",
+    "duration_s": 323
+  }
+]

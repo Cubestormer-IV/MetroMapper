@@ -1,9 +1,9 @@
 route_id,service_id,trip_id,trip_headsign,trip_short_name,direction_id,block_id,shape_id,wheelchair_accessible,bikes_allowed
-Delhi1,weekday,0,,,,,shp_1_30,0,0
+Delhi1,weekday,0,,,,,shp_osm_1,0,0
 Delhi1,weekday,1,,,,,shp_1_30,0,0
 Delhi1,weekday,10,,,,,shp_1_30,0,0
 Delhi1,weekday,100,,,,,shp_1_30,0,0
-Delhi2,weekday,1000,,,,,shp_1_13,0,0
+Delhi2,weekday,1000,,,,,shp_osm_2,0,0
 Delhi1,saturday,10000,,,,,shp_1_33,0,0
 Delhi1,saturday,10001,,,,,shp_1_33,0,0
 Delhi1,saturday,10002,,,,,shp_1_33,0,0
@@ -801,7 +801,7 @@ Delhi2,weekday,11676,,,,,shp_1_22,0,0
 Delhi2,weekday,11677,,,,,shp_1_22,0,0
 Delhi2,weekday,11678,,,,,shp_1_22,0,0
 Delhi2,weekday,11679,,,,,shp_1_22,0,0
-Delhi3,weekday,12423,,,,,shp_1_28,0,0
+Delhi3,weekday,12423,,,,,shp_osm_3,0,0
 Delhi3,weekday,12424,,,,,shp_1_28,0,0
 Delhi3,weekday,12425,,,,,shp_1_28,0,0
 Delhi3,weekday,12426,,,,,shp_1_28,0,0
@@ -987,7 +987,7 @@ Delhi3,weekday,12605,,,,,shp_1_28,0,0
 Delhi3,weekday,12606,,,,,shp_1_28,0,0
 Delhi3,weekday,12607,,,,,shp_1_28,0,0
 Delhi3,weekday,12608,,,,,shp_1_28,0,0
-Delhi4,weekday,12942,,,,,shp_1_36,0,0
+Delhi4,weekday,12942,,,,,shp_osm_4,0,0
 Delhi4,weekday,12943,,,,,shp_1_36,0,0
 Delhi4,weekday,12944,,,,,shp_1_36,0,0
 Delhi4,weekday,12945,,,,,shp_1_36,0,0
@@ -1171,7 +1171,7 @@ Delhi4,weekday,13122,,,,,shp_1_36,0,0
 Delhi4,weekday,13123,,,,,shp_1_36,0,0
 Delhi4,weekday,13124,,,,,shp_1_36,0,0
 Delhi4,weekday,13125,,,,,shp_1_36,0,0
-Delhi5,weekday,13455,,,,,shp_1_4,0,0
+Delhi5,weekday,13455,,,,,shp_osm_5,0,0
 Delhi5,weekday,13456,,,,,shp_1_4,0,0
 Delhi5,weekday,13457,,,,,shp_1_4,0,0
 Delhi5,weekday,13458,,,,,shp_1_4,0,0
@@ -1384,7 +1384,7 @@ Delhi5,weekday,13874,,,,,shp_1_3,0,0
 Delhi5,weekday,13875,,,,,shp_1_3,0,0
 Delhi5,weekday,13876,,,,,shp_1_3,0,0
 Delhi5,weekday,13877,,,,,shp_1_3,0,0
-Delhi6,weekday,14087,,,,,shp_1_5,0,0
+Delhi6,weekday,14087,,,,,shp_osm_6,0,0
 Delhi6,weekday,14088,,,,,shp_1_5,0,0
 Delhi6,weekday,14089,,,,,shp_1_5,0,0
 Delhi6,weekday,14090,,,,,shp_1_5,0,0
@@ -1710,7 +1710,7 @@ Delhi2,weekday,1478,,,,,shp_1_25,0,0
 Delhi2,weekday,1479,,,,,shp_1_25,0,0
 Delhi2,weekday,1480,,,,,shp_1_25,0,0
 Delhi2,weekday,1481,,,,,shp_1_25,0,0
-Delhi7,weekday,14810,,,,,shp_1_35,0,0
+Delhi7,weekday,14810,,,,,shp_pink_ring,0,0
 Delhi7,weekday,14811,,,,,shp_1_35,0,0
 Delhi7,weekday,14812,,,,,shp_1_35,0,0
 Delhi7,weekday,14813,,,,,shp_1_35,0,0
@@ -1946,7 +1946,7 @@ Delhi2,weekday,1532,,,,,shp_1_25,0,0
 Delhi2,weekday,1533,,,,,shp_1_25,0,0
 Delhi2,weekday,1534,,,,,shp_1_25,0,0
 Delhi2,weekday,1535,,,,,shp_1_25,0,0
-Delhi8,weekday,15351,,,,,shp_1_8,0,0
+Delhi8,weekday,15351,,,,,shp_osm_8,0,0
 Delhi8,weekday,15352,,,,,shp_1_8,0,0
 Delhi8,weekday,15353,,,,,shp_1_8,0,0
 Delhi8,weekday,15354,,,,,shp_1_8,0,0
@@ -2173,7 +2173,7 @@ Delhi2,weekday,1584,,,,,shp_1_25,0,0
 Delhi2,weekday,1585,,,,,shp_1_25,0,0
 Delhi2,weekday,1586,,,,,shp_1_25,0,0
 Delhi2,weekday,1587,,,,,shp_1_25,0,0
-Delhi9,weekday,15876,,,,,shp_1_1,0,0
+Delhi9,weekday,15876,,,,,shp_osm_9,0,0
 Delhi9,weekday,15877,,,,,shp_1_1,0,0
 Delhi9,weekday,15878,,,,,shp_1_1,0,0
 Delhi9,weekday,15879,,,,,shp_1_1,0,0
@@ -2273,7 +2273,7 @@ Delhi2,weekday,1607,,,,,shp_1_25,0,0
 Delhi2,weekday,1608,,,,,shp_1_25,0,0
 Delhi2,weekday,1609,,,,,shp_1_25,0,0
 Delhi2,weekday,1610,,,,,shp_1_25,0,0
-DelhiAirport,weekday,16107,,,,,shp_1_18,0,0
+DelhiAirport,weekday,16107,,,,,shp_osm_AEx,0,0
 DelhiAirport,weekday,16108,,,,,shp_1_18,0,0
 DelhiAirport,weekday,16109,,,,,shp_1_18,0,0
 Delhi2,weekday,1611,,,,,shp_1_25,0,0
@@ -5437,3 +5437,5 @@ Delhi1,weekday,9488,,,,,shp_1_6,0,0
 Delhi1,weekday,9489,,,,,shp_1_6,0,0
 Delhi1,weekday,9490,,,,,shp_1_6,0,0
 Delhi1,weekday,9491,,,,,shp_1_6,0,0
+Delhi7,weekday,pink_ext_fwd_1,,,,,,0,0
+Delhi7,weekday,pink_ext_rev_1,,,,,,0,0

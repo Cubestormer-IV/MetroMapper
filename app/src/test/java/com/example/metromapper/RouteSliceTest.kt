@@ -12,15 +12,29 @@ class RouteSliceTest {
         val from: String,
         val to: String,
         val line: String,
-        @SerializedName("distance_m") val distanceM: Int
+        @SerializedName("distance_m") val distanceM: Int,
+        @SerializedName("duration_s") val durationS: Int
+    )
+
+    private data class TransferJson(
+        val from: String,
+        val to: String,
+        @SerializedName("duration_s") val durationS: Int
     )
 
     private fun loadConnections(): List<Connection> {
         val json = File("src/main/assets/data/canonical/connections.json").readText()
+        val transferJson = File("src/main/assets/data/canonical/transfers.json").readText()
 
-        return Gson()
+        val rides = Gson()
             .fromJson(json, Array<ConnectionJson>::class.java)
-            .map { Connection(it.from, it.to, it.line, it.distanceM) }
+            .map { Connection(it.from, it.to, it.line, it.distanceM, it.durationS) }
+
+        val walks = Gson()
+            .fromJson(transferJson, Array<TransferJson>::class.java)
+            .map { Connection(it.from, it.to, "walk", 0, it.durationS) }
+
+        return rides + walks
     }
 
     @Test
@@ -36,7 +50,7 @@ class RouteSliceTest {
                 "rohini_east",
                 "pitampura",
                 "kohat_enclave",
-                "netaji_subash_place",
+                "netaji_subhash_place",
                 "keshav_puram",
                 "kanhaiya_nagar",
                 "inderlok",
@@ -44,6 +58,7 @@ class RouteSliceTest {
                 "pratap_nagar",
                 "pul_bangash",
                 "tis_hazari",
+                "kashmere_gate",
                 "kashmere_gate",
                 "chandni_chowk",
                 "chawri_bazar",
@@ -57,10 +72,12 @@ class RouteSliceTest {
 
         val legs = splitIntoLegs(route)
 
-        assertEquals(2, legs.size)
+        // red -> walk (change platforms at Kashmere Gate) -> yellow
+        assertEquals(3, legs.size)
         assertEquals("red", legs[0].line)
-        assertEquals("kashmere_gate", legs[0].alightAt)
-        assertEquals("yellow", legs[1].line)
-        assertEquals("rajiv_chowk", legs[1].alightAt)
+        assertEquals("kashmere_gate:red", legs[0].alightAt)
+        assertEquals("walk", legs[1].line)
+        assertEquals("yellow", legs[2].line)
+        assertEquals("rajiv_chowk:yellow", legs[2].alightAt)
     }
 }

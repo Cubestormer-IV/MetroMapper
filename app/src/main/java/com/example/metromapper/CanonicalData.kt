@@ -30,7 +30,8 @@ private data class ConnectionJson(
     val from: String,
     val to: String,
     val line: String,
-    @SerializedName("distance_m") val distanceM: Int
+    @SerializedName("distance_m") val distanceM: Int,
+    @SerializedName("duration_s") val durationS: Int
 )
 
 fun loadConnections(context: Context): List<Connection> {
@@ -41,7 +42,28 @@ fun loadConnections(context: Context): List<Connection> {
 
     return Gson()
         .fromJson(json, Array<ConnectionJson>::class.java)
-        .map { Connection(it.from, it.to, it.line, it.distanceM) }
+        .map { Connection(it.from, it.to, it.line, it.distanceM, it.durationS) }
+}
+
+// Matches the fields in transfers.json — a walk between two platforms,
+// e.g. changing lines at an interchange. Modeled as a Connection with
+// line = "walk" and no real distance, so the rest of the app (route search,
+// leg splitting) doesn't need a second edge type to understand.
+private data class TransferJson(
+    val from: String,
+    val to: String,
+    @SerializedName("duration_s") val durationS: Int
+)
+
+fun loadTransfers(context: Context): List<Connection> {
+    val json = context.assets
+        .open("data/canonical/transfers.json")
+        .bufferedReader()
+        .use { it.readText() }
+
+    return Gson()
+        .fromJson(json, Array<TransferJson>::class.java)
+        .map { Connection(it.from, it.to, "walk", 0, it.durationS) }
 }
 
 // Matches the fields in termini.json

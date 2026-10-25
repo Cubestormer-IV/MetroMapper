@@ -14,10 +14,12 @@ sealed class RouteStep {
     data class Ride(val stops: Int, val minutes: Int) : RouteStep()
     data class ChangeAt(val stationName: String) : RouteStep()
     data class GetOffAt(val stationName: String) : RouteStep()
+    data class Walk(val toStationName: String, val minutes: Int) : RouteStep()
 }
 
 // Turns a route into the steps a rider actually needs:
-// board, ride, (change, board, ride, ...), get off.
+// board, ride, (change, board, ride, ...), get off. A walk leg (changing
+// lines at an interchange) becomes its own Walk step instead of a Board.
 fun buildSteps(
     route: RouteResult,
     connections: List<Connection>,
@@ -29,9 +31,14 @@ fun buildSteps(
     val destination = route.stations.last()
     val steps = mutableListOf<RouteStep>()
 
-    fun nameOf(stationId: String) = stationsById[stationId]?.name ?: stationId
+    fun nameOf(stationId: String) = stationsById[placeOf(stationId)]?.name ?: stationId
 
     legs.forEachIndexed { index, leg ->
+        if (leg.isWalk) {
+            steps.add(RouteStep.Walk(nameOf(leg.alightAt), leg.estimatedMinutes))
+            return@forEachIndexed
+        }
+
         val line = linesById[leg.line]
         val direction = directionOf(leg, destination, connections, termini)
 

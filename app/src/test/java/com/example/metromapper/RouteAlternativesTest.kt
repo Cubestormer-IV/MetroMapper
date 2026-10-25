@@ -11,10 +11,10 @@ class RouteAlternativesTest {
         // Path 1: A -> B -> D (200 m)
         // Path 2: A -> C -> D (300 m)
         val connections = listOf(
-            Connection("A", "B", "red", 100),
-            Connection("B", "D", "red", 100),
-            Connection("A", "C", "yellow", 150),
-            Connection("C", "D", "yellow", 150)
+            Connection("A", "B", "red", 100, 100),
+            Connection("B", "D", "red", 100, 100),
+            Connection("A", "C", "yellow", 150, 150),
+            Connection("C", "D", "yellow", 150, 150)
         )
 
         val routes = findRoutes(connections, "A", "D")
@@ -32,7 +32,7 @@ class RouteAlternativesTest {
     fun returnsEmptyWhenUnreachable() {
 
         val connections = listOf(
-            Connection("A", "B", "red", 100)
+            Connection("A", "B", "red", 100, 100)
         )
 
         assertEquals(emptyList<RouteResult>(), findRoutes(connections, "B", "A"))

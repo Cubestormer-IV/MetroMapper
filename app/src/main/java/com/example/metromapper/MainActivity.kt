@@ -36,17 +36,6 @@ import com.google.maps.android.compose.rememberMarkerState
 import com.google.android.gms.maps.model.Dot
 import com.google.android.gms.maps.model.Gap
 
-// The old GTFS route IDs we draw as background lines on the map,
-// with a color each. This predates the canonical data and can be
-// retired once shapes.json is wired up instead.
-private val LEGACY_LINE_COLORS = listOf(
-    "0" to Color.Red,
-    "2" to Color.Yellow,
-    "5" to Color.Blue,
-    "7" to Color.Green,
-    "12" to Color.Magenta
-)
-
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,13 +46,11 @@ class MainActivity : ComponentActivity() {
         // Load the canonical data once, not on every recomposition
         val stations = loadStations(this)
         val stationsById = stations.associateBy { it.id }
-        val connections = loadConnections(this)
+        val connections = loadConnections(this) + loadTransfers(this)
         val termini = loadTermini(this)
         val linesById = loadLines(this).associateBy { it.id }
 
-        val backgroundLines = LEGACY_LINE_COLORS.map { (routeId, color) ->
-            loadColorLine(assets, routeId) to color
-        }
+        val backgroundLines = loadMetroLineShapes(assets)
 
         setContent {
             var screen by remember { mutableStateOf<Screen>(Screen.Picker) }
@@ -109,7 +96,7 @@ class MainActivity : ComponentActivity() {
                             is Screen.Options -> {
                                 val fromPos = current.routes.firstOrNull()?.stations?.firstOrNull()
                                     ?.let {stationsById[it]?.position }
-                                val toPos = current.routes.firstOrNull()?.stations?.firstOrNull()
+                                val toPos = current.routes.firstOrNull()?.stations?.lastOrNull()
                                     ?.let {stationsById[it]?.position }
                                 if (fromPos != null) Marker(state = rememberMarkerState(position = fromPos))
                                 if (toPos != null) Marker(state = rememberMarkerState(position = toPos))
@@ -181,31 +168,66 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// Reads a GTFS route's shape points, to draw it on the map.
-private fun loadColorLine(assets: AssetManager, routeId: String): List<LatLng> {
+// A shape's bounding box, used to tell a route's genuinely distinct
+// physical branches apart from short-turn trip variants that just trace
+// part of a path we're already drawing.
+private data class BBox(val minLat: Double, val maxLat: Double, val minLng: Double, val maxLng: Double)
 
-    // Find a trip belonging to this route
-    val trips = assets.open("data/gtfs/trips.txt")
-        .bufferedReader()
-        .readLines()
+private fun boundingBoxOf(points: List<LatLng>): BBox = BBox(
+    minLat = points.minOf { it.latitude },
+    maxLat = points.maxOf { it.latitude },
+    minLng = points.minOf { it.longitude },
+    maxLng = points.maxOf { it.longitude },
+)
 
-    val trip = trips
-        .drop(1)
-        .map { it.split(",") }
-        .firstOrNull { it[0] == routeId }
-        ?: return emptyList()
+// True if `inner` doesn't meaningfully extend beyond `outer` -- i.e. inner
+// is a short-turn/truncated variant of a path we're already drawing, not a
+// genuinely distinct branch.
+private fun isRedundant(inner: BBox, outer: BBox, tolerance: Double = 0.002): Boolean =
+    inner.minLat >= outer.minLat - tolerance &&
+    inner.maxLat <= outer.maxLat + tolerance &&
+    inner.minLng >= outer.minLng - tolerance &&
+    inner.maxLng <= outer.maxLng + tolerance
 
-    val shapeId = trip[7] // shape_id
+// Reads every metro route's shapes, colored with that route's own GTFS
+// color. A route can have several distinct shape_ids across its trips --
+// not just Blue's and Green's branch routes, but any short-turn trip
+// pattern -- so every distinct shape is considered, and only the ones that
+// aren't just a smaller subset of a shape we're already drawing survive.
+private fun loadMetroLineShapes(assets: AssetManager): List<Pair<List<LatLng>, Color>> {
+    val routeRows = assets.open("data/gtfs/metro/routes.txt")
+        .bufferedReader().readLines().drop(1).map { it.split(",") }
+    val tripRows = assets.open("data/gtfs/metro/trips.txt")
+        .bufferedReader().readLines().drop(1).map { it.split(",") }
+    val shapeRows = assets.open("data/gtfs/metro/shapes.txt")
+        .bufferedReader().readLines().drop(1).map { it.split(",") }
 
-    // Get the shape points
-    val shapes = assets.open("data/gtfs/shapes.txt")
-        .bufferedReader()
-        .readLines()
+    val pointsByShapeId = shapeRows
+        .groupBy { it[0] }
+        .mapValues { (_, rows) ->
+            rows.sortedBy { it[3].toInt() }.map { LatLng(it[1].toDouble(), it[2].toDouble()) }
+        }
 
-    return shapes
-        .drop(1)
-        .map { it.split(",") }
-        .filter { it[0] == shapeId }
-        .sortedBy { it[3].toInt() } // shape_pt_sequence
-        .map { LatLng(it[1].toDouble(), it[2].toDouble()) }
+    val shapeIdsByRoute = tripRows
+        .groupBy { it[0] } // route_id
+        .mapValues { (_, trips) -> trips.map { it[7] }.filter { it.isNotBlank() }.distinct() }
+
+    return routeRows.flatMap { route ->
+        val routeId = route[0]
+        val colorHex = route[7] // route_color
+        val color = Color(android.graphics.Color.parseColor("#$colorHex"))
+
+        val shapes = shapeIdsByRoute[routeId].orEmpty()
+            .mapNotNull { shapeId -> pointsByShapeId[shapeId]?.takeIf { it.isNotEmpty() } }
+            .sortedByDescending { it.size }
+
+        val kept = mutableListOf<List<LatLng>>()
+        for (shape in shapes) {
+            val bbox = boundingBoxOf(shape)
+            val redundant = kept.any { isRedundant(bbox, boundingBoxOf(it)) }
+            if (!redundant) kept.add(shape)
+        }
+
+        kept.map { it to color }
+    }
 }
