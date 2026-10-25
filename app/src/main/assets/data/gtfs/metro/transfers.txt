@@ -49,3 +49,5 @@ from_stop_id,to_stop_id,transfer_type,min_transfer_time
 127_violet,127_pink,2,297
 131_magenta,131_violet,2,331
 131_violet,131_magenta,2,331
+173_magenta,173_pink,2,260
+173_pink,173_magenta,2,260

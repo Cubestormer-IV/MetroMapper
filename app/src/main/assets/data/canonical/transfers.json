@@ -180,6 +180,16 @@
     "duration_s": 297
   },
   {
+    "from": "majlis_park:magenta",
+    "to": "majlis_park:pink",
+    "duration_s": 260
+  },
+  {
+    "from": "majlis_park:pink",
+    "to": "majlis_park:magenta",
+    "duration_s": 260
+  },
+  {
     "from": "mandi_house:blue",
     "to": "mandi_house:violet",
     "duration_s": 199

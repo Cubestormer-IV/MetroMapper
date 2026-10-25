@@ -155,6 +155,15 @@
     ]
   },
   {
+    "id": "bhalswa",
+    "name": "Bhalswa",
+    "latitude": 28.736919,
+    "longitude": 77.168071,
+    "lines": [
+      "magenta"
+    ]
+  },
+  {
     "id": "bhikaji_cama_place",
     "name": "Bhikaji Cama Place",
     "latitude": 28.570198,
@@ -269,6 +278,15 @@
     "name": "Dashrath Puri",
     "latitude": 28.602333,
     "longitude": 77.08255,
+    "lines": [
+      "magenta"
+    ]
+  },
+  {
+    "id": "deepali_chowk",
+    "name": "Deepali Chowk",
+    "latitude": 28.698094,
+    "longitude": 77.118277,
     "lines": [
       "magenta"
     ]
@@ -588,7 +606,17 @@
     "latitude": 28.718657,
     "longitude": 77.149956,
     "lines": [
-      "yellow"
+      "yellow",
+      "magenta"
+    ]
+  },
+  {
+    "id": "haiderpur_village",
+    "name": "Haiderpur Village",
+    "latitude": 28.724881,
+    "longitude": 77.142437,
+    "lines": [
+      "magenta"
     ]
   },
   {
@@ -1033,6 +1061,15 @@
     ]
   },
   {
+    "id": "madhuban_chowk",
+    "name": "Madhuban Chowk",
+    "latitude": 28.703568,
+    "longitude": 77.130072,
+    "lines": [
+      "magenta"
+    ]
+  },
+  {
     "id": "madipur",
     "name": "Madipur",
     "latitude": 28.676418,
@@ -1056,7 +1093,8 @@
     "latitude": 28.724157,
     "longitude": 77.182068,
     "lines": [
-      "pink"
+      "pink",
+      "magenta"
     ]
   },
   {
@@ -2378,6 +2416,15 @@
     "longitude": 77.055664,
     "lines": [
       "blue"
+    ]
+  },
+  {
+    "id": "uttar_pitampura___prashant_vihar",
+    "name": "Uttar Pitampura - Prashant Vihar",
+    "latitude": 28.713082,
+    "longitude": 77.138672,
+    "lines": [
+      "magenta"
     ]
   },
   {

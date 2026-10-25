@@ -3558,7 +3558,7 @@ Delhi4,weekday,3789,,,,,shp_1_12,0,0
 Delhi4,weekday,3790,,,,,shp_1_12,0,0
 Delhi4,weekday,3791,,,,,shp_1_12,0,0
 Delhi4,weekday,3792,,,,,shp_1_12,0,0
-Delhi5,weekday,4119,,,,,shp_1_17,0,0
+Delhi5,weekday,4119,,,,,shp_osm_5_spur,0,0
 Delhi5,weekday,4120,,,,,shp_1_17,0,0
 Delhi5,weekday,4121,,,,,shp_1_17,0,0
 Delhi5,weekday,4122,,,,,shp_1_17,0,0
@@ -5439,3 +5439,5 @@ Delhi1,weekday,9490,,,,,shp_1_6,0,0
 Delhi1,weekday,9491,,,,,shp_1_6,0,0
 Delhi7,weekday,pink_ext_fwd_1,,,,,,0,0
 Delhi7,weekday,pink_ext_rev_1,,,,,,0,0
+Delhi8,weekday,magenta_ext_fwd_1,,,,,shp_magenta_ext,0,0
+Delhi8,weekday,magenta_ext_rev_1,,,,,,0,0

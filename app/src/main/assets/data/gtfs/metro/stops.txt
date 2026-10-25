@@ -218,7 +218,9 @@ stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,location_type,parent_sta
 170,,Sector 53-54 (Rapid Metro),,28.447533,77.100487,0,
 171,,Sector 54 Chowk (Rapid Metro),,28.434212,77.104782,0,
 172,,Sector 55-56 (Rapid Metro),,28.424587,77.105042,0,
-173,,Majlis Park,,28.724157,77.182068,0,
+173,,Majlis Park,,28.724157,77.182068,1,
+173_magenta,,Majlis Park,,28.724157,77.182068,0,173
+173_pink,,Majlis Park,,28.724157,77.182068,0,173
 174,,Shalimar Bagh,,28.70182,77.165184,0,
 175,,Shakurpur,,28.685781,77.149651,0,
 176,,Punjabi Bagh West,,28.672747,77.139183,0,
@@ -316,3 +318,9 @@ stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,location_type,parent_sta
 526,,Jagatpur Village,,28.72115,77.223935,0,
 527,,Jharoda Majra,,28.724883,77.213678,0,
 528,,Burari,,28.729829,77.199574,0,
+529,,Bhalswa,,28.736919,77.168071,0,
+530,,Haiderpur Badli Mor,,28.72982,77.14888,0,
+531,,Haiderpur Village,,28.724881,77.142437,0,
+532,,Uttar Pitampura - Prashant Vihar,,28.713082,77.138672,0,
+533,,Madhuban Chowk,,28.703568,77.130072,0,
+534,,Deepali Chowk,,28.698094,77.118277,0,

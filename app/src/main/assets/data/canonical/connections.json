@@ -177,7 +177,7 @@
   },
   {
     "from": "azadpur:pink",
-    "to": "majlis_park",
+    "to": "majlis_park:pink",
     "line": "pink",
     "mode": "metro",
     "distance_m": 1887,
@@ -320,6 +320,22 @@
     "duration_s": 157
   },
   {
+    "from": "bhalswa",
+    "to": "haiderpur_badli_mor",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 2031,
+    "duration_s": 222
+  },
+  {
+    "from": "bhalswa",
+    "to": "majlis_park:magenta",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 1969,
+    "duration_s": 215
+  },
+  {
     "from": "bhikaji_cama_place",
     "to": "sir_vishweshwaraiah_moti_bagh",
     "line": "pink",
@@ -369,7 +385,7 @@
   },
   {
     "from": "burari",
-    "to": "majlis_park",
+    "to": "majlis_park:pink",
     "line": "pink",
     "mode": "metro",
     "distance_m": 1820,
@@ -534,6 +550,14 @@
     "mode": "metro",
     "distance_m": 1495,
     "duration_s": 133
+  },
+  {
+    "from": "deepali_chowk",
+    "to": "madhuban_chowk",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 1302,
+    "duration_s": 141
   },
   {
     "from": "delhi_aerocity",
@@ -1089,6 +1113,22 @@
   },
   {
     "from": "haiderpur_badli_mor",
+    "to": "bhalswa",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 2031,
+    "duration_s": 222
+  },
+  {
+    "from": "haiderpur_badli_mor",
+    "to": "haiderpur_village",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 834,
+    "duration_s": 91
+  },
+  {
+    "from": "haiderpur_badli_mor",
     "to": "jahangirpuri",
     "line": "yellow",
     "mode": "metro",
@@ -1102,6 +1142,22 @@
     "mode": "metro",
     "distance_m": 2778,
     "duration_s": 176
+  },
+  {
+    "from": "haiderpur_village",
+    "to": "haiderpur_badli_mor",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 834,
+    "duration_s": 91
+  },
+  {
+    "from": "haiderpur_village",
+    "to": "uttar_pitampura___prashant_vihar",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 1362,
+    "duration_s": 148
   },
   {
     "from": "harkesh_nagar_okhla",
@@ -1992,6 +2048,22 @@
     "duration_s": 131
   },
   {
+    "from": "madhuban_chowk",
+    "to": "deepali_chowk",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 1302,
+    "duration_s": 142
+  },
+  {
+    "from": "madhuban_chowk",
+    "to": "uttar_pitampura___prashant_vihar",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 1350,
+    "duration_s": 148
+  },
+  {
     "from": "madipur",
     "to": "paschim_vihar_(east)",
     "line": "green",
@@ -2024,7 +2096,15 @@
     "duration_s": 95
   },
   {
-    "from": "majlis_park",
+    "from": "majlis_park:magenta",
+    "to": "bhalswa",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 1969,
+    "duration_s": 214
+  },
+  {
+    "from": "majlis_park:pink",
     "to": "azadpur:pink",
     "line": "pink",
     "mode": "metro",
@@ -2032,7 +2112,7 @@
     "duration_s": 217
   },
   {
-    "from": "majlis_park",
+    "from": "majlis_park:pink",
     "to": "burari",
     "line": "pink",
     "mode": "metro",
@@ -4414,6 +4494,22 @@
     "mode": "metro",
     "distance_m": 792,
     "duration_s": 105
+  },
+  {
+    "from": "uttar_pitampura___prashant_vihar",
+    "to": "haiderpur_village",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 1362,
+    "duration_s": 148
+  },
+  {
+    "from": "uttar_pitampura___prashant_vihar",
+    "to": "madhuban_chowk",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 1350,
+    "duration_s": 148
   },
   {
     "from": "vaishali",
