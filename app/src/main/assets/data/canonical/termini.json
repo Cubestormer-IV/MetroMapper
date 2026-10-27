@@ -2,7 +2,7 @@
   { "line": "red", "stationId": "rithala", "towards": "Rithala" },
   { "line": "red", "stationId": "shaheed_sthal_(new_bus_adda)", "towards": "Shaheed Sthal" },
 
-  { "line": "yellow", "stationId": "huda_city_centre", "towards": "Huda City Centre" },
+  { "line": "yellow", "stationId": "millennium_city_centre_gurugram", "towards": "Millennium City Centre Gurugram" },
   { "line": "yellow", "stationId": "samaypur_badli", "towards": "Samaypur Badli" },
 
   { "line": "blue", "stationId": "dwarka_sector___21", "towards": "Dwarka Sector 21" },
@@ -16,13 +16,15 @@
   { "line": "violet", "stationId": "raja_nahar_singh", "towards": "Raja Nahar Singh" },
   { "line": "violet", "stationId": "kashmere_gate", "towards": "Kashmere Gate" },
 
-  { "line": "magenta", "stationId": "janak_puri_west", "towards": "Janakpuri West" },
+  { "line": "magenta", "stationId": "krishna_park_extension", "towards": "Krishna Park Extension" },
   { "line": "magenta", "stationId": "botanical_garden", "towards": "Botanical Garden" },
+  { "line": "magenta", "stationId": "majlis_park", "towards": "Majlis Park" },
+  { "line": "magenta", "stationId": "deepali_chowk", "towards": "Deepali Chowk" },
 
   { "line": "pink", "stationId": "majlis_park", "towards": "Majlis Park" },
   { "line": "pink", "stationId": "shiv_vihar", "towards": "Shiv Vihar" },
 
-  { "line": "orange", "stationId": "dwarka_sector___21", "towards": "Dwarka Sector 21" },
+  { "line": "orange", "stationId": "yashobhoomi_dwarka_sector___25", "towards": "Yashobhoomi Dwarka Sector 25" },
   { "line": "orange", "stationId": "new_delhi", "towards": "New Delhi" },
 
   { "line": "aqua", "stationId": "noida_sector_51", "towards": "Noida Sector 51" },

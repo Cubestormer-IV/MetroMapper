@@ -321,7 +321,7 @@
   },
   {
     "from": "bhalswa",
-    "to": "haiderpur_badli_mor",
+    "to": "haiderpur_badli_mor:magenta",
     "line": "magenta",
     "mode": "metro",
     "distance_m": 2031,
@@ -334,6 +334,14 @@
     "mode": "metro",
     "distance_m": 1969,
     "duration_s": 215
+  },
+  {
+    "from": "bhikaji_cama_place",
+    "to": "sarojini_nagar",
+    "line": "pink",
+    "mode": "metro",
+    "distance_m": 1359,
+    "duration_s": 133
   },
   {
     "from": "bhikaji_cama_place",
@@ -856,6 +864,14 @@
     "duration_s": 241
   },
   {
+    "from": "dwarka_sector___21:orange",
+    "to": "yashobhoomi_dwarka_sector___25",
+    "line": "orange",
+    "mode": "metro",
+    "distance_m": 1880,
+    "duration_s": 112
+  },
+  {
     "from": "dwarka_sector___8",
     "to": "dwarka_sector___21:blue",
     "line": "blue",
@@ -1112,7 +1128,7 @@
     "duration_s": 106
   },
   {
-    "from": "haiderpur_badli_mor",
+    "from": "haiderpur_badli_mor:magenta",
     "to": "bhalswa",
     "line": "magenta",
     "mode": "metro",
@@ -1120,7 +1136,7 @@
     "duration_s": 222
   },
   {
-    "from": "haiderpur_badli_mor",
+    "from": "haiderpur_badli_mor:magenta",
     "to": "haiderpur_village",
     "line": "magenta",
     "mode": "metro",
@@ -1128,7 +1144,7 @@
     "duration_s": 91
   },
   {
-    "from": "haiderpur_badli_mor",
+    "from": "haiderpur_badli_mor:yellow",
     "to": "jahangirpuri",
     "line": "yellow",
     "mode": "metro",
@@ -1136,7 +1152,7 @@
     "duration_s": 126
   },
   {
-    "from": "haiderpur_badli_mor",
+    "from": "haiderpur_badli_mor:yellow",
     "to": "rohini_sector_18_19",
     "line": "yellow",
     "mode": "metro",
@@ -1145,7 +1161,7 @@
   },
   {
     "from": "haiderpur_village",
-    "to": "haiderpur_badli_mor",
+    "to": "haiderpur_badli_mor:magenta",
     "line": "magenta",
     "mode": "metro",
     "distance_m": 834,
@@ -1224,28 +1240,20 @@
     "duration_s": 113
   },
   {
-    "from": "huda_city_centre",
-    "to": "iffco_chowk",
-    "line": "yellow",
-    "mode": "metro",
-    "distance_m": 1486,
-    "duration_s": 120
-  },
-  {
-    "from": "iffco_chowk",
-    "to": "huda_city_centre",
-    "line": "yellow",
-    "mode": "metro",
-    "distance_m": 1486,
-    "duration_s": 120
-  },
-  {
     "from": "iffco_chowk",
     "to": "mg_road",
     "line": "yellow",
     "mode": "metro",
     "distance_m": 1379,
     "duration_s": 140
+  },
+  {
+    "from": "iffco_chowk",
+    "to": "millennium_city_centre_gurugram",
+    "line": "yellow",
+    "mode": "metro",
+    "distance_m": 1486,
+    "duration_s": 120
   },
   {
     "from": "igi_airport",
@@ -1268,7 +1276,7 @@
     "to": "hauz_khas:magenta",
     "line": "magenta",
     "mode": "metro",
-    "distance_m": 1273,
+    "distance_m": 1274,
     "duration_s": 114
   },
   {
@@ -1409,7 +1417,7 @@
   },
   {
     "from": "jahangirpuri",
-    "to": "haiderpur_badli_mor",
+    "to": "haiderpur_badli_mor:yellow",
     "line": "yellow",
     "mode": "metro",
     "distance_m": 1511,
@@ -1486,6 +1494,14 @@
     "mode": "metro",
     "distance_m": 1695,
     "duration_s": 155
+  },
+  {
+    "from": "janak_puri_west:magenta",
+    "to": "krishna_park_extension",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 2800,
+    "duration_s": 272
   },
   {
     "from": "jangpura",
@@ -1756,7 +1772,7 @@
     "to": "karkarduma_court",
     "line": "pink",
     "mode": "metro",
-    "distance_m": 1039,
+    "distance_m": 1038,
     "duration_s": 150
   },
   {
@@ -1966,6 +1982,14 @@
     "mode": "metro",
     "distance_m": 1056,
     "duration_s": 117
+  },
+  {
+    "from": "krishna_park_extension",
+    "to": "janak_puri_west:magenta",
+    "line": "magenta",
+    "mode": "metro",
+    "distance_m": 2800,
+    "duration_s": 273
   },
   {
     "from": "lajpat_nagar:pink",
@@ -2358,6 +2382,14 @@
     "mode": "metro",
     "distance_m": 1303,
     "duration_s": 127
+  },
+  {
+    "from": "millennium_city_centre_gurugram",
+    "to": "iffco_chowk",
+    "line": "yellow",
+    "mode": "metro",
+    "distance_m": 1486,
+    "duration_s": 120
   },
   {
     "from": "model_town",
@@ -3140,7 +3172,7 @@
     "to": "botanical_garden:magenta",
     "line": "magenta",
     "mode": "metro",
-    "distance_m": 2003,
+    "distance_m": 2004,
     "duration_s": 212
   },
   {
@@ -3180,7 +3212,7 @@
     "to": "jasola_vihar_shaheen_bagh",
     "line": "magenta",
     "mode": "metro",
-    "distance_m": 1835,
+    "distance_m": 1836,
     "duration_s": 181
   },
   {
@@ -3353,11 +3385,11 @@
   },
   {
     "from": "phase_2_(rapid_metro)",
-    "to": "sikanderpur_(rapid_metro)",
+    "to": "sikanderpur:rapid",
     "line": "rapid",
     "mode": "metro",
     "distance_m": 889,
-    "duration_s": 360
+    "duration_s": 500
   },
   {
     "from": "phase_3_(rapid_metro)",
@@ -3668,7 +3700,7 @@
     "to": "iit",
     "line": "magenta",
     "mode": "metro",
-    "distance_m": 1013,
+    "distance_m": 1014,
     "duration_s": 108
   },
   {
@@ -3697,7 +3729,7 @@
   },
   {
     "from": "rohini_sector_18_19",
-    "to": "haiderpur_badli_mor",
+    "to": "haiderpur_badli_mor:yellow",
     "line": "yellow",
     "mode": "metro",
     "distance_m": 2778,
@@ -3836,7 +3868,7 @@
     "to": "bhikaji_cama_place",
     "line": "pink",
     "mode": "metro",
-    "distance_m": 1,
+    "distance_m": 1359,
     "duration_s": 133
   },
   {
@@ -4145,6 +4177,14 @@
   },
   {
     "from": "sikanderpur:rapid",
+    "to": "phase_2_(rapid_metro)",
+    "line": "rapid",
+    "mode": "metro",
+    "distance_m": 889,
+    "duration_s": 500
+  },
+  {
+    "from": "sikanderpur:rapid",
     "to": "phase_i_(rapid_metro)",
     "line": "rapid",
     "mode": "metro",
@@ -4166,14 +4206,6 @@
     "mode": "metro",
     "distance_m": 1303,
     "duration_s": 127
-  },
-  {
-    "from": "sikanderpur_(rapid_metro)",
-    "to": "phase_2_(rapid_metro)",
-    "line": "rapid",
-    "mode": "metro",
-    "distance_m": 889,
-    "duration_s": 360
   },
   {
     "from": "sir_vishweshwaraiah_moti_bagh",
@@ -4260,7 +4292,7 @@
     "to": "jamia_millia_islamia",
     "line": "magenta",
     "mode": "metro",
-    "distance_m": 1231,
+    "distance_m": 1232,
     "duration_s": 153
   },
   {
@@ -4662,5 +4694,13 @@
     "mode": "metro",
     "distance_m": 1201,
     "duration_s": 131
+  },
+  {
+    "from": "yashobhoomi_dwarka_sector___25",
+    "to": "dwarka_sector___21:orange",
+    "line": "orange",
+    "mode": "metro",
+    "distance_m": 1880,
+    "duration_s": 113
   }
 ]

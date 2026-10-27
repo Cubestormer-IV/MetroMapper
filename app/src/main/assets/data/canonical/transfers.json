@@ -80,6 +80,16 @@
     "duration_s": 311
   },
   {
+    "from": "haiderpur_badli_mor:magenta",
+    "to": "haiderpur_badli_mor:yellow",
+    "duration_s": 321
+  },
+  {
+    "from": "haiderpur_badli_mor:yellow",
+    "to": "haiderpur_badli_mor:magenta",
+    "duration_s": 321
+  },
+  {
     "from": "hauz_khas:magenta",
     "to": "hauz_khas:yellow",
     "duration_s": 287
